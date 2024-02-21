@@ -35,3 +35,11 @@ class Bloqueador():
     def boton_listar(self):
         self.addButton = tk.Button(self.window, text="Listar", command=self.listar_url)
         self.addButton.pack(pady=5)
+
+
+    def agregar_url(self):
+        url = self.entry.get()
+        if url:
+            with open(self.hostsFile, 'a') as file:
+                file.write(f"\n127.0.0.1\t www.{url}.com")
+            self.entry.delete(0, tk.END)  
