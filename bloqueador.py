@@ -42,4 +42,15 @@ class Bloqueador():
         if url:
             with open(self.hostsFile, 'a') as file:
                 file.write(f"\n127.0.0.1\t www.{url}.com")
-            self.entry.delete(0, tk.END)  
+            self.entry.delete(0, tk.END)
+            
+    def eliminar_url(self):
+        url = self.entry.get()
+        if url:
+            with open(self.hostsFile, 'r') as file:
+                lines = file.readlines()
+            with open(self.hostsFile, 'w') as file:
+                for line in lines:
+                    if not line.strip().endswith(f"www.{url}.com"):
+                        file.write(line)
+            self.entry.delete(0, tk.END)
