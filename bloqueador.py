@@ -54,3 +54,16 @@ class Bloqueador():
                     if not line.strip().endswith(f"www.{url}.com"):
                         file.write(line)
             self.entry.delete(0, tk.END)
+            
+            
+    def listar_url(self):
+        new_window = tk.Tk()
+        new_window.geometry("400x400")
+        new_window.title("Páginas Bloqueadas")
+        new_window.resizable(width=False, height=False)
+        with open(self.hostsFile, 'r') as file:
+            lines = file.readlines()
+            for line in lines:
+                if line.strip().startswith("127.0.0.1\t www."):
+                    label = tk.Label(new_window, text=line.strip())
+                    label.pack(pady=5)
